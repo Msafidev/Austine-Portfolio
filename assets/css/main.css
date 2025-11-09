@@ -162,9 +162,9 @@ h6 {
 }
 
 .header .logo h1 {
-  font-size: 32px;
+  font-size: 28px;
   margin: 0;
-  font-weight: 400;
+  font-weight: 300;
   color: var(--heading-color);
 }
 
@@ -174,7 +174,7 @@ h6 {
 
 .header .header-social-links a {
   color: color-mix(in srgb, var(--default-color), transparent 40%);
-  padding-left: 6px;
+  padding-left: 5px;
   display: inline-block;
   transition: 0.3s;
   font-size: 16px;
@@ -599,7 +599,7 @@ h6 {
 --------------------------------------------------------------*/
 @media screen and (max-width: 768px) {
   [data-aos-delay] {
-    transition-delay: 0 !important;
+    transition-delay: 0s !important;
   }
 }
 

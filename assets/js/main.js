@@ -200,5 +200,65 @@
   const glightbox = GLightbox({
     selector: '.glightbox'
   });
+  // chatbot.js
+document.addEventListener("DOMContentLoaded", () => {
+  const chatToggle = document.getElementById('chatbot-toggle');
+  const chatWindow = document.getElementById('chatbot-window');
+  const chatClose = document.getElementById('chatbot-close');
+  const chatForm = document.getElementById('chatbot-form');
+  const chatInput = document.getElementById('chatbot-input');
+  const chatMessages = document.getElementById('chatbot-messages');
 
+  // Toggle popup open/close
+  chatToggle.addEventListener('click', () => {
+    chatWindow.classList.toggle('visible');
+  });
+
+  // Close button inside chat
+  chatClose.addEventListener('click', () => {
+    chatWindow.classList.remove('visible');
+  });
+
+  // Add messages
+  function addMessage(text, sender) {
+    const msg = document.createElement('div');
+    msg.classList.add('message', sender);
+    msg.textContent = text;
+    chatMessages.appendChild(msg);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  // Handle sending
+  chatForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const userText = chatInput.value.trim();
+    if (!userText) return;
+    addMessage(userText, 'user');
+    chatInput.value = '';
+
+    addMessage('Thinking...', 'bot');
+
+    try {
+      const response = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer YOUR_API_KEY_HERE"
+        },
+        body: JSON.stringify({
+          model: "gpt-3.5-turbo",
+          messages: [{ role: "user", content: userText }]
+        })
+      });
+
+      const data = await response.json();
+      chatMessages.lastChild.remove();
+      addMessage(data.choices[0].message.content, 'bot');
+    } catch (err) {
+      chatMessages.lastChild.remove();
+      addMessage("Sorry, something went wrong 😔", 'bot');
+      console.error(err);
+    }
+  });
+});
 })();

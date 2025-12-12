@@ -146,7 +146,6 @@ h6 {
   --background-color: #e10a7f;
   color: var(--default-color);
   background-color: var(--background-color);
-  padding: 15px 0;
   transition: all 0.5s;
   z-index: 997;
   border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 92%);
@@ -157,8 +156,8 @@ h6 {
 }
 
 .header .logo img {
-  max-height: 36px;
-  margin-right: 8px;
+  max-height: 100px;
+  max-width: 100px;
 }
 
 .header .logo h1 {
@@ -2853,4 +2852,183 @@ section,
 --------------------------------------------------------------*/
 .starter-section {
   /* Add your styles here */
+
+//* chatbot.css */
+
+/* CHATBOT CONTAINER — stays fixed bottom-right */
+#chatbot-container {
+  position: fixed;
+  bottom: 25px;   /* distance from bottom */
+  right: 25px;    /* distance from right */
+  font-family: "Poppins", sans-serif;
+  z-index: 10000; /* make sure it's above everything */
 }
+
+/* FLOATING BUTTON */
+#chatbot-toggle {
+  background: #4f46e5;           /* nice violet-blue tone */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 26px;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+  transition: all 0.25s ease;
+}
+
+/* hover effect */
+#chatbot-toggle:hover {
+  background: #3730a3;
+  transform: scale(1.1);
+}
+
+/* chatbot.css */
+
+/* CHATBOT CONTAINER — fixed at left center */
+#chatbot-container {
+  position: fixed;
+  top: 50%;            /* middle of the screen */
+  left: 25px;          /* distance from the left edge */
+  transform: translateY(-50%); /* perfectly center vertically */
+  font-family: "Poppins", sans-serif;
+  z-index: 10000;
+}
+
+/* chatbot.css */
+
+/* CHATBOT CONTAINER — fixed at left center */
+#chatbot-container {
+  position: fixed;
+  top: 50%;            /* middle of the screen */
+  left: 25px;          /* distance from the left edge */
+  transform: translateY(-50%); /* perfectly center vertically */
+  font-family: "Poppins", sans-serif;
+  z-index: 10000;
+}
+
+/* FLOATING BUTTON */
+#chatbot-toggle {
+  background: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 26px;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+  transition: all 0.25s ease;
+}
+
+/* Hover effect */
+#chatbot-toggle:hover {
+  background: #3730a3;
+  transform: scale(1.1);
+}
+
+/* CHAT WINDOW */
+#chatbot-window {
+  background: #fff;
+  width: 340px;
+  height: 430px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: scale(0);
+  transform-origin: left center; /* pop from the button side */
+  transition: transform 0.3s ease-in-out;
+  position: absolute;
+  left: 80px;   /* makes it appear just beside the button */
+  top: 50%;
+  transform: translateY(-50%) scale(0);
+}
+
+/* visible state */
+#chatbot-window.visible {
+  transform: translateY(-50%) scale(1);
+}
+
+/* hidden fallback */
+.hidden {
+  display: none;
+}
+
+/* HEADER */
+#chatbot-header {
+  background: #4f46e5;
+  color: white;
+  padding: 10px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#chatbot-header button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* MESSAGES */
+#chatbot-messages {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.message {
+  padding: 10px 14px;
+  border-radius: 8px;
+  max-width: 80%;
+  line-height: 1.4;
+  animation: fadeIn 0.3s ease;
+}
+
+.user {
+  background: #4f46e5;
+  color: white;
+  align-self: flex-end;
+}
+
+.bot {
+  background: #f3f4f6;
+  color: #111;
+  align-self: flex-start;
+}
+
+/* INPUT */
+#chatbot-form {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+#chatbot-input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+}
+
+#chatbot-form button {
+  background: #4f46e5;
+  color: white;
+  border: none;
+  padding: 0 16px;
+  cursor: pointer;
+}
+
+/* animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}}
